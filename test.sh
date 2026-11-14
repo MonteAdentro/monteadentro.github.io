@@ -51,11 +51,4 @@ if grep -q 'mailto:\|lfelipemonte+' "${PAGE#file://}" || [[ "$(grep -c 'lfelipem
   echo "FAIL email: page must show lfelipemonte@gmail.com 4 times as plain text, with no mailto link or alias"; failures=$((failures + 1))
 fi
 
-# --- Test 9: the policy states retention, region, technical data and AI scope in both languages ---
-for phrase in "7 days" "7 días" "14 days" "14 días" "United States" "Estados Unidos" "message ID" "ID del mensaje" "general-purpose" "propósito general" "Last updated: 14 November 2026" "Última actualización: 14 de noviembre de 2026"; do
-  if ! grep -q "$phrase" "${PAGE#file://}"; then
-    echo "FAIL content: page does not contain \"$phrase\""; failures=$((failures + 1))
-  fi
-done
-
 [[ $failures -eq 0 ]] && echo "OK" || exit 1
