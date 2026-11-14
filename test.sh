@@ -46,4 +46,9 @@ check "#unknown"     privacy  en "#privacy-es"
 # --- Test 7: unknown language keeps the tab and falls back to English ---
 check "#deletion-fr" deletion en "#deletion-es"
 
+# --- Test 8: the email is plain text, with no link and no alias ---
+if grep -q 'mailto:\|lfelipemonte+' "${PAGE#file://}" || [[ "$(grep -c 'lfelipemonte@gmail.com' "${PAGE#file://}")" -ne 4 ]]; then
+  echo "FAIL email: page must show lfelipemonte@gmail.com 4 times as plain text, with no mailto link or alias"; failures=$((failures + 1))
+fi
+
 [[ $failures -eq 0 ]] && echo "OK" || exit 1
