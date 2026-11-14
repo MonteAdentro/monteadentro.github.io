@@ -3,7 +3,7 @@
 set -euo pipefail
 
 CHROME="${CHROME:-$(ls -d ~/.cache/ms-playwright/chromium_headless_shell-*/chrome-headless-shell-linux64/chrome-headless-shell | tail -1)}"
-PAGE="file://$(cd "$(dirname "$0")" && pwd)/privacy/index.html"
+PAGE="file://$(cd "$(dirname "$0")" && pwd)/legal/index.html"
 failures=0
 
 check() {
